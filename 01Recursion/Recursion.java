@@ -29,8 +29,21 @@ public class Recursion{
     }
     return fibHelp(n,last + number,counter + 1, number);
   }
-  public double sort(double n){
-    return 0;
+  public double sqrt(double n){
+    return sqrtHelp(n, 1.0);
+  }
+  public double sqrtHelp(double n, double guess){
+    if(n < 0){
+      throw new IllegalArgumentException();
+    }
+    if(n == 0){
+      return 0;
+    }
+    if((java.lang.Math.abs((guess * guess - n) / n) * 100) < 0.000001){
+      return guess;
+    }
+    return sqrtHelp(n, (n / guess + guess) / 2);
+
   }
   public static void main(String[] args){
     Recursion r = new Recursion();
@@ -40,9 +53,10 @@ public class Recursion{
     System.out.println(r.fib(1));
     System.out.println(r.fib(2));
     System.out.println(r.fib(3));
-    System.out.println(r.fib(4));
-    System.out.println(r.fib(5));
-    System.out.println(r.fib(6));
-    System.out.println(r.fib(7));
+    System.out.println(r.sqrt(0));
+    System.out.println(r.sqrt(4));
+    System.out.println(r.sqrt(16));
+    System.out.println(r.sqrt(100));
+
   }
 }
