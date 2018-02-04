@@ -1,7 +1,4 @@
 public class Recursion{
-  public Recursion(){
-
-  }
   public int fact(int n){
     if(n < 0){
       throw new IllegalArgumentException();
@@ -48,14 +45,14 @@ public class Recursion{
   public static void main(String[] args){
     Recursion r = new Recursion();
     System.out.println(r.fact(5));
-    // System.out.println(r.fib(-1));
+    //System.out.println(r.fib(-1));
     System.out.println(r.fib(0));
     System.out.println(r.fib(1));
     System.out.println(r.fib(2));
     System.out.println(r.fib(3));
     System.out.println(r.sqrt(0));
     System.out.println(r.sqrt(4));
-    System.out.println(r.sqrt(16));
+    System.out.println(r.sqrt(2));
     System.out.println(r.sqrt(100));
 
   }
