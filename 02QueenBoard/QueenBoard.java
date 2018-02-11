@@ -11,30 +11,32 @@ public class QueenBoard{
     if(board[r][c] == -1){
 	    return false;
     }
+    board[r][c] = -1;
     if(c  < board[0].length -1){
 	    for(int col = c + 1; col < board[0].length;col++){
         board[r][col] += 1;
 	    }
-	    if(r < board.length - 1 && r > 0){
+	    if(r < board.length){
         int row = r - 1;
         int col = c + 1;
-        while(row - 1 > 0 && col + 1 < board[0].length){
+        while(row  >= 0 && col < board[0].length){
           board[row][col] += 1;
           row--;
           col++;
         }
+      }
+      if(r >= 0){
         int ro = r + 1;
         int co = c + 1;
-        while(ro + 1 < board.length && co + 1 < board[0].length){
+        while(ro  < board.length && co  < board[0].length){
           board[ro][co] +=1;
           ro++;
-          col++;
+          co++;
         }
-	    }
+      }
     }
     return true;
-  }
-	
+	}
   private boolean removeQueen(int r, int c){
     return true;
   }
@@ -63,9 +65,11 @@ public class QueenBoard{
   }
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(4);
+    q.addQueen(2,0);
     System.out.println(q);
-    q.addQueen(1,1);
+    q.addQueen(2,3);
     System.out.println(q);
-    System.out.println(Arrays.deepToString(q.board));
+    q.addQueen(1,2);
+    System.out.println(q);
   }
 }
