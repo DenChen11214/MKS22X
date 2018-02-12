@@ -73,7 +73,7 @@ public class QueenBoard{
           output += "Q ";
         }
         else{
-          output += "_ ";
+          output += board[r][c]+" ";
         }
       }
       output += "\n";
@@ -123,15 +123,40 @@ public class QueenBoard{
     return sol;
   }
   public int countHelp(int col, int counter){
-    for(int r = 0;r < board[0].length; r++){
+    int[] row = new int[board.length];
+    int[] co = new int[board.length];
+    if(board.length == 0){
+      return 1;
+    }
+    for(int r = 0;r < board.length; r++){
       if(addQueen(r,col)){
-        if(solveHelp(col + 1)){
+        if(solveHelp2(col + 1, row,co)){
           counter++;
+          for(int i = 1; i < row.length;i++){
+            removeQueen(row[i],co[i]);
+          }
+          System.out.println(this);
         }
         removeQueen(r,col);
       }
     }
   return counter;
+  }
+  public boolean solveHelp2(int col, int[] row, int[] co){
+    if(col >= board.length){
+      return true;
+    }
+    for(int r = 0;r < board[0].length; r++){
+      if(addQueen(r,col)){
+        row[col] = r;
+        co[col] = col;
+        if(solveHelp2(col + 1,row,co)){
+          return true;
+        }
+        removeQueen(r,col);
+      }
+    }
+  return false;
   }
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(4);
