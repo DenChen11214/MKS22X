@@ -73,7 +73,7 @@ public class QueenBoard{
           output += "Q ";
         }
         else{
-          output += board[r][c]+" ";
+          output += "_ ";
         }
       }
       output += "\n";
