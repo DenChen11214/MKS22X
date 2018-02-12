@@ -3,7 +3,6 @@ public class QueenBoard{
   private int[][] board;
   public QueenBoard(int size){
     board = new int[size][size];
-    solve();
   }
   private boolean addQueen(int r, int c){
     if(board[r][c] >= 1){
@@ -74,7 +73,7 @@ public class QueenBoard{
           output += "Q ";
         }
         else{
-          output += board[r][c] + " ";
+          output += "_ ";
         }
       }
       output += "\n";
@@ -115,10 +114,28 @@ public class QueenBoard{
         }
       }
     }
-    return 0;
+    int sol = countHelp(0,0);
+    for(int r = 0;r < board.length;r++){
+      for(int c = 0;c < board.length;c++){
+        board[r][c] = 0;
+      }
+    }
+    return sol;
+  }
+  public int countHelp(int col, int counter){
+    for(int r = 0;r < board[0].length; r++){
+      if(addQueen(r,col)){
+        if(solveHelp(col + 1)){
+          counter++;
+        }
+        removeQueen(r,col);
+      }
+    }
+  return counter;
   }
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(4);
-    System.out.println(q);
+    System.out.println(q.countSolutions());
+
   }
 }
