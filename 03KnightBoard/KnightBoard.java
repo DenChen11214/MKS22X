@@ -1,5 +1,7 @@
 public class KnightBoard{
     private int[][] board;
+    private final int[] moveSetRow = {-2,-2,-1,1,2,2,1,-1};
+    private final int[] moveSetCol = {1,-1,-2,-2,-1,1,2,-2};
     public KnightBoard(int startingRows, int startingCols){
 	if(startingRows < 0 || startingCols < 0){
 	    throw new IllegalArgumentException();
@@ -29,7 +31,6 @@ public class KnightBoard{
 	    }
 	}
     }
-    private boolean
     public boolean solve(int startingRow, int startingCol){
 	if(startingRows < 0 || startingCols < 0){
 	    throw new IllegalArgumentException();
@@ -38,8 +39,6 @@ public class KnightBoard{
 	return solveHelp(int startingRow, int startingCol, 0);
     }
     private boolean solveHelp(int row, int col, int level){
-	int[][] moves = new int[8][8];
-	
 	if(startingRows < 0 || startingCols < 0){
 	    throw new IllegalArgumentException();
 	}
