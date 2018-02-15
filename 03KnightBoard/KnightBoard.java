@@ -5,6 +5,7 @@ public class KnightBoard{
     public KnightBoard(int startingRows, int startingCols){
 	if(startingRows < 0 || startingCols < 0){
 	    throw new IllegalArgumentException();
+	}
 	board = new int[startingRows][startingCols];
     }
     public String toString(){
@@ -32,18 +33,35 @@ public class KnightBoard{
 	}
     }
     public boolean solve(int startingRow, int startingCol){
-	if(startingRows < 0 || startingCols < 0){
+	if(startingRow < 0 || startingCol < 0){
 	    throw new IllegalArgumentException();
 	}
 	nonZero();
-	return solveHelp(int startingRow, int startingCol, 0);
+	return solveHelp(startingRow,startingCol, 0);
     }
     private boolean solveHelp(int row, int col, int level){
-	if(startingRows < 0 || startingCols < 0){
+	if(col < 0 || row < 0){
 	    throw new IllegalArgumentException();
 	}
-	nonZero();
-	
+
+	if(level > board.length * board[0].length){
+	    return true;
+	}
+	board[row][col] = level + 1;
+	for(int i = 0; i < 8;i++){
+	    System.out.println(i);
+	    System.out.println(moveSetRow[i]);
+	    //row + a neg could be less or sth
+	    if(row  + moveSetRow[i] < board.length &&
+	       col + moveSetCol[i] < board[0].length &&
+	       row  + moveSetRow[i] >= 0 &&
+	       col + moveSetCol[i] >= 0 &&
+	       board[row + moveSetRow[i]][col + moveSetRow[i]] == 0){
+		if(solveHelp(row + moveSetRow[i], col + moveSetCol[i], level + 1)){
+		    return true;
+		}
+	    }
+	}
 	return true;
     }
     public int countSolutions(int startingRow, int startingCol){
@@ -51,6 +69,7 @@ public class KnightBoard{
     }
     public static void main(String[] args){
 	KnightBoard k = new KnightBoard(5,5);
+	k.solve(1,1);
 	System.out.println(k);
     }
 }
