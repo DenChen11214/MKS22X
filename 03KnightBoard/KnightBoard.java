@@ -1,12 +1,14 @@
 import java.util.*;
 public class KnightBoard{
   private int[][] board;
+  private int solutions;
   private final int[] moveSetRow = {-2,-2,-1,1,2,2,1,-1};
   private final int[] moveSetCol = {1,-1,-2,-2,-1,1,2,2};
   public KnightBoard(int startingRows, int startingCols){
     if(startingRows < 0 || startingCols < 0){
 	    throw new IllegalArgumentException();
     }
+    solutions = 0;
     board = new int[startingRows][startingCols];
   }
   public String toString(){
@@ -36,6 +38,9 @@ public class KnightBoard{
   public boolean solve(int startingRow, int startingCol){
     if(startingRow < 0 || startingCol < 0){
 	    throw new IllegalArgumentException();
+    }
+    if(startingRow > board.length || startingRow > board[0].length){
+      throw new IllegalArgumentException();
     }
     nonZero();
     board[startingRow][startingCol] = 1;
@@ -71,11 +76,40 @@ public class KnightBoard{
     return false;
   }
   public int countSolutions(int startingRow, int startingCol){
-    return 0;
+    if(startingRow < 0 || startingCol < 0){
+	    throw new IllegalArgumentException();
+    }
+    if(startingRow > board.length || startingRow > board[0].length){
+      throw new IllegalArgumentException();
+    }
+    nonZero();
+    board[startingRow][startingCol] = 1;
+    countHelp(startingRow,startingCol,1);
+    for(int r = 0;r < board.length;r++){
+	    for(int c = 0;c < board.length;c++){
+        board[r][c] = 0;
+	    }
+    }
+    return solutions;
+  }
+  public boolean countHelp(int row, int col, int level){
+    if(col < 0 || row < 0){
+	    throw new IllegalArgumentException();
+    }
+    if(level == board.length * board[0].length){
+      solutions ++;
+	    return true;
+    }
+    for(int i = 0;i<8;i++){
+      if(moveKnight(row,col,level,i)){
+        countHelp(row + moveSetRow[i], col + moveSetCol[i], level + 1);
+        board[row + moveSetRow[i]][col + moveSetCol[i]] = 0;
+	    }
+    }
+    return false;
   }
   public static void main(String[] args){
-    KnightBoard k = new KnightBoard(7,7);
-    k.solve(1,2);
-    System.out.println(k);
+    KnightBoard k = new KnightBoard(5,5);
+    System.out.println(k.countSolutions(0,0));
   }
 }
