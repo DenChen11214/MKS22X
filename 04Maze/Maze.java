@@ -3,6 +3,8 @@ import java.util.*;
 public class Maze{
     private char[][] mazeBoard;
     private boolean animate;
+    private int eRow;
+    private int eCol;
     public Maze(String filename) throws FileNotFoundException{
 	int s = 0;
 	int e = 0;
@@ -19,6 +21,8 @@ public class Maze{
 		}
 		if(line.charAt(i) == 'E'){
 		    e++;
+		    eRow = r;
+		    eCol = c;
 		}
 	    }
 	    r++;
@@ -28,7 +32,7 @@ public class Maze{
 	}
 	mazeBoard = new char[r][c];
 	this.readMaze(filename);
-
+	
     }
     private void wait(int millis){
 	try {
@@ -44,15 +48,8 @@ public class Maze{
         //erase terminal, go to top left of screen.
         System.out.println("\033[2J\033[1;1H");
     }
-    private int solve(int row, int col){
-	if(animate){
-	    clearTerminal();
-	    System.out.println(this);
-	    wait(20);
-	}	 
-	return -1; 
-    }
-    public void readMaze(String maze){
+  
+    private void readMaze(String maze){
 	try{
 	    int r = 0;
 	    File f = new File(maze);
@@ -78,6 +75,28 @@ public class Maze{
 	    str += "\n";
 	}
 	return str;
+    }
+    public int solve(){
+	for(int r = 0;r < mazeBoard.length;r++){
+	    for(int c = 0; c < mazeBoard[0].length;c ++){
+		if(mazeBoard[r][c] == 'S'){
+		    mazeBoard[r][c] = ' ';
+		    return solve(r,c);
+		}
+	    }
+	}
+	return 0;
+    }
+    private int solve(int row, int col){
+	if(animate){
+	    clearTerminal();
+	    System.out.println(this);
+	    wait(20);
+	}	 
+	if(row == eRow && col == eCol){
+	    return 0;
+	}
+	return 0;
     }
     public static void main(String args[]){
 	try{
