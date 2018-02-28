@@ -79,6 +79,17 @@ public class Maze{
 	}
 	return str;
     }
+    public int solve(){
+	for(int r = 0;r < maze.length;r++){
+	    for(int c = 0; c < maze[0].length;c ++){
+		if(mazeBoard[r][c] == 'S'){
+		    mazeBoard[r][c] == ' ';
+		    return solve(r,c);
+		}
+	    }
+	}
+    }
+    private int
     public static void main(String args[]){
 	try{
 	    Maze m = new Maze("Maze1.txt");
