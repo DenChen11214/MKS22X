@@ -3,8 +3,6 @@ import java.util.*;
 public class Maze{
     private char[][] mazeBoard;
     private boolean animate;
-    private int eRow;
-    private int eCol;
     private int numA;
     private int[] rows = {-1,0,1,0};
     private int[] cols = {0,-1,0,1};
@@ -24,8 +22,6 @@ public class Maze{
 		}
 		if(line.charAt(i) == 'E'){
 		    e++;
-		    eRow = r;
-		    eCol = c;
 		}
 	    }
 	    r++;
@@ -84,50 +80,48 @@ public class Maze{
 	    for(int c = 0; c < mazeBoard[0].length;c ++){
 		if(mazeBoard[r][c] == 'S'){
 		    mazeBoard[r][c] = ' ';
-		    return solve(r,c);
+		    solve(r,c);
+		    return numA;
 		}
 	    }
 	}
 	return 0;
     }
     private boolean canMove(int row, int col,int i){
-	if(row + rows[i] > mazeBoard.length ||
-	   row + rows[i] <= 0 ||
-	   col + cols[i] > mazeBoard[0].length ||
-	   col + cols[i] <= 0){
-	    return false;
-	}
-	if(mazeBoard[row + rows[i]][col + rows[i]] == '#' ||
-	   mazeBoard[row + rows[i]][col + rows[i]] == '@' ||
-	   mazeBoard[row + rows[i]][col + rows[i]] == '.'){
+
+	if(mazeBoard[row + rows[i]][col + cols[i]] == '#' ||
+	   mazeBoard[row + rows[i]][col + cols[i]] == '@' ||
+	   mazeBoard[row + rows[i]][col + cols[i]] == '.'){
 	    return false;
 	}
 	return true;
     }
-    private int solve(int row, int col){
+    private boolean solve(int row, int col){
 	if(animate){
 	    clearTerminal();
 	    System.out.println(this);
 	    wait(20);
-	}	 
-	if(row == eRow && col == eCol){
-	    return numA;
+	}
+	if(mazeBoard[row][col] == 'E'){
+	    return true;
 	}
 	for(int i = 0; i < 4;i++){
 	    if(canMove(row,col,i)){
 		mazeBoard[row][col] = '@';
 		numA ++;
-		solve(row + rows[i], col + cols[i]);
+		if(solve(row + rows[i], col + cols[i])){
+		    return true;
+		}
 	    }
 	}
 	mazeBoard[row][col] = '.';
 	numA --;
-	return 0;
+	return false;
     }
     public static void main(String args[]){
 	try{
 	    Maze m = new Maze("Maze1.txt");
-	    m.solve();
+	    System.out.println(m.solve());
 	    System.out.println(m);
 	}
 	catch(FileNotFoundException e){
