@@ -3,19 +3,26 @@ import java.io.*;
 public class USACO{
     public static int bronze(String filename){
 	try{
-	    int r = 0;
-	    int c = 0;
 	    File f = new File(filename);
 	    Scanner in = new Scanner(f);
-	    while(in.hasNextLine()){
-		String line = in.nextLine();
-		if(r == 0){
-		    for(int i = 0; i < line.length() ; i++){
-			while(line.charAt(i) != ' '){
-			}
-		    }
+	    int r = in.nextInt();
+	    int c = in.nextInt();
+	    int e = in.nextInt();
+	    int n = in.nextInt();
+	    int[][] lake = new int[r][c];
+	    for(int row = 0; row < r; row++){
+		for(int col = 0; col < c; c++){
+		    lake[row][col] = in.nextInt();
 		}
 	    }
+	    int[][] stomp = new int[n][3];
+	    for(int row = 0; row < r; row++){
+		for(int col = 0; col < c; c++){
+		    stomp[row][col] = in.nextInt();
+		}
+	    }
+	    for(n; n > 0; n--){
+		for(
 	}
 			    
 	return 0;
