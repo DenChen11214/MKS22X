@@ -120,9 +120,16 @@ public class Maze{
     }
     public static void main(String args[]){
 	try{
-	    Maze m = new Maze("Maze1.txt");
+	    Maze m = new Maze("data1.dat");
 	    System.out.println(m.solve());
 	    System.out.println(m);
+      Maze a = new Maze("data2.dat");
+	    System.out.println(a.solve());
+	    System.out.println(a);
+      Maze z = new Maze("data3.dat");
+	    System.out.println(z.solve());
+	    System.out.println(z);
+
 	}
 	catch(FileNotFoundException e){
 	    
