@@ -14,6 +14,7 @@ public class USACO{
       int ro = 0;
       int co = 0;
       int r2 = 0;
+      int sumDepth = 0;
 	    while(in.hasNextInt()){
         int i = in.nextInt();
         if(co == c){
@@ -42,7 +43,6 @@ public class USACO{
             if(lake[row][col] > max){
               max = lake[row][col];
             }
-            System.out.println(max);
           }
         }
         for(int row = stomp[a][0] - 1; row < r3 + 2;row++){
@@ -53,7 +53,20 @@ public class USACO{
           }
         }
       }
-      
+      for(int row = 0; row < r; row++){
+        for(int col = 0; col < c; col++){
+          lake[row][col] = e - lake[row][col];
+        }
+      }
+      for(int row = 0; row < r; row++){
+        for(int col = 0; col < c; col++){
+          if(lake[row][col] > 0){
+            sumDepth += lake[row][col];
+          }
+        }
+      }
+      return sumDepth * 72 * 72;
+
     }
     catch(FileNotFoundException e){
       System.out.println("No such file exists");
@@ -64,6 +77,15 @@ public class USACO{
     return 0;
   }
   public static void main(String[] args){
-    bronze("LakeMake1.txt");
+    System.out.println(bronze("LakeMake1.txt"));
+    System.out.println(bronze("LakeMake2.txt"));
+    System.out.println(bronze("LakeMake3.txt"));
+    System.out.println(bronze("LakeMake4.txt"));
+    System.out.println(bronze("LakeMake5.txt"));
+    System.out.println(bronze("LakeMake6.txt"));
+    System.out.println(bronze("LakeMake7.txt"));
+    System.out.println(bronze("LakeMake8.txt"));
+    System.out.println(bronze("LakeMake9.txt"));
+    System.out.println(bronze("LakeMake10.txt"));
   }
 }
