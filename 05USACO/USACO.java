@@ -73,6 +73,7 @@ public class USACO{
 	}
 	return 0;
     }
+    
     public static int silver(String filename){
 	try{
 	    File f = new File(filename);
