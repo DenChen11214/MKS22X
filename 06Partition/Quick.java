@@ -2,27 +2,29 @@ import java.util.*;
 public class Quick{
   public static int part(int[] data,int start, int end){
     Random a = new Random();
-    int in = a.nextInt(data.length);
+    int in = 0;
+    if(end - start == 0){
+      in = start;
+    }
+    else{
+      in = a.nextInt(end - start) + start;
+    }
     int i1 = data[in];
     int small = start + 1;
     int large = end;
     int temp  = data[start];
-    data[0] = i1;
+    data[start] = i1;
     data[in] = temp;
-    for(int i = start + 1;i <= end && small <= large;i++){
-        if(data[i] <= i1){
-          temp = data[i];
-          data[i] = data[small];
-          data[small] = temp;
-          small++;
-        }
-        if(data[i] > i1){
-          temp = data[i];
-          data[i] = data[large];
-          data[large] = temp;
-          large--;
-          i--;
-        }
+    while(small <= large){
+      if(data[small] < i1){
+        small++;
+      }
+      else{
+        temp = data[small];
+        data[small] = data[large];
+        data[large] = temp;
+        large--;
+      }
     }
     temp = data[large];
     data[large] = i1;
