@@ -47,15 +47,19 @@ public class Quick{
     }
     return data[v1];
   }
+  public static void quickSort(int[] ary){
+    quickSortHelp(ary, 0, ary.length - 1);
+  }
+  public static void quickSortHelp(int[] ary, int start, int end){
+    if(start != end + 1){
+      int v1 =  part(ary, start, end);
+      quickSortHelp(ary,start,v1 - 1);
+      quickSortHelp(ary,v1 + 1, end);
+    }
+  }
   public static void main(String[] args){
-    int[] dat = {5,8,7,2,4,9,2,6};
-    System.out.println(quickSelect(dat,1));
-    System.out.println(quickSelect(dat,2));
-    System.out.println(quickSelect(dat,3));
-    System.out.println(quickSelect(dat,4));
-    System.out.println(quickSelect(dat,5));
-    System.out.println(quickSelect(dat,6));
-    System.out.println(quickSelect(dat,7));
-    System.out.println(quickSelect(dat,8));
+    int[] dat = {2,1,4,61,75,4234,3753,32,11,1,1,1,1};
+    quickSort(dat);
+    System.out.println(Arrays.toString(dat));
   }
 }
