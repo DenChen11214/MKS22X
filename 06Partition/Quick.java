@@ -11,7 +11,7 @@ public class Quick{
 	}
 	int i1 = data[in];
 	int small = start + 1;
-	int large = end;
+     	int large = end;
 	int index = small;
 	int temp  = data[start];
 	data[start] = i1;
@@ -20,7 +20,7 @@ public class Quick{
 	    if(data[index] == i1){
 		index++;
 	    }
-	    if(data[index] > i1){
+	    else if(data[index] > i1){
 		temp = data[index];
 		data[index] = data[large];
 		data[large] = temp;
@@ -37,7 +37,6 @@ public class Quick{
 	temp = data[small - 1];
 	data[small - 1] = i1;
 	data[start] = temp;
-	System.out.println(i1);
 	return large;
     }
     public static int quickSelect(int[] data, int k){
@@ -67,8 +66,8 @@ public class Quick{
 	}
     }
     public static void main(String[] args){
-	int[] dat = {1,0,0,2,0,1,2,0,1,2,0,0,0,1,2};
-	System.out.println(part(dat,0,14));
+	int[] dat = {1,2,0,0,1,2,3,4,5,6,1,2,5,2,63,41,0,0,2,3};
+	System.out.println(part(dat,0,19));
 	System.out.println(Arrays.toString(dat));
     }
 }
