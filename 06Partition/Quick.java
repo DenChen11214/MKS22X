@@ -48,13 +48,15 @@ public class Quick{
     while(v1 >= k || v2 + 2 <= k){
 	    if(v1 >= k){
         e = v1 - 1;
-        v1 = partition(data,s,e)[0];
-        v2 = partition(data,s,e)[1];
+        range = partition(data,s,e);
+        v1 = range[0];
+        v2 = range[1];
 	    }
 	    else if(v2 + 2 <= k){
         s = v2 + 1;
-        v1 = partition(data,s,e)[0];
-        v2 = partition(data,s,e)[1];
+        range = partition(data,s,e);
+        v1 = range[0];
+        v2 = range[1];
 	    }
     }
     return data[k - 1];
@@ -74,6 +76,7 @@ public class Quick{
   public static void main(String[]args){
     int[] ary = {9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5};
     System.out.println(quickselect(ary,6) + " <- Should be 0");
+    System.out.println(Arrays.toString(ary));
     int[] ary1 = {9,5,8,7,5,6,5,-3,4,5,3,4,5,1,2,3,4,4,3,5,4,3};
     System.out.println(quickselect(ary1,20) + " <- Should be 7");
     System.out.println(quickselect(ary1,14) + " <- Should be 5");
