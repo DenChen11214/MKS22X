@@ -45,21 +45,21 @@ public class Quick{
     int v2 = range[1];
     int s = 0;
     int e = data.length - 1;
-    while(v1 >= k || v2 + 2 <= k){
-	    if(v1 >= k){
+    while(v1 >= k + 1 || v2 + 2 <= k + 1){
+	    if(v1 >= k + 1){
         e = v1 - 1;
         range = partition(data,s,e);
         v1 = range[0];
         v2 = range[1];
 	    }
-	    else if(v2 + 2 <= k){
+	    else if(v2 + 2 <= k + 1){
         s = v2 + 1;
         range = partition(data,s,e);
         v1 = range[0];
         v2 = range[1];
 	    }
     }
-    return data[k - 1];
+    return data[k];
   }
   public static void quicksort(int[] ary){
     quickSortHelp(ary, 0, ary.length - 1);
@@ -75,14 +75,14 @@ public class Quick{
   }
   public static void main(String[]args){
     int[] ary = {9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5};
-    System.out.println(quickselect(ary,6) + " <- Should be 0");
+    System.out.println(quickselect(ary,5) + " <- Should be 0");
     System.out.println(Arrays.toString(ary));
     int[] ary1 = {9,5,8,7,5,6,5,-3,4,5,3,4,5,1,2,3,4,4,3,5,4,3};
-    System.out.println(quickselect(ary1,20) + " <- Should be 7");
-    System.out.println(quickselect(ary1,14) + " <- Should be 5");
+    System.out.println(quickselect(ary1,19) + " <- Should be 7");
+    System.out.println(quickselect(ary1,13) + " <- Should be 5");
     System.out.println(Arrays.toString(ary1));
-    System.out.println(quickselect(ary1,1) + " <- Should be -3");
-    System.out.println(quickselect(ary1,ary1.length) + " <- Should be 9");
+    System.out.println(quickselect(ary1,0) + " <- Should be -3");
+    System.out.println(quickselect(ary1,ary1.length - 1) + " <- Should be 9");
     int[] ary2 = {3,6,1,2,4,6,8,99,1,2,32,45,123,-23,12,-30,-12,-3};
     quicksort(ary2);
     System.out.println("Your sorted array" + "\n" + Arrays.toString(ary2));
