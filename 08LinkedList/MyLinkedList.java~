@@ -1,0 +1,34 @@
+public class MyLinkedList{
+    private Node first,last;
+    private int length;
+    private class Node{
+	private Node next,prev;
+	private int data;
+	public Node(int data){
+	    this.data = data;
+	    next = new Node(0);
+	    prev = new Node(0);
+	}
+	public Node getNext(){
+	    return next;
+	}
+	public Node getPrev(){
+	    return prev;
+	}
+	public int getValue(){
+	    return data;
+	}
+	public void setNext(Node value){
+	    next = value;
+	}
+	public void setPrev(Node value){
+	    prev = value;
+	}
+	public void setValue(int value){
+	    data = value;
+	}
+	public String toString(){
+	    return "[" + data + "]";
+	}
+    }
+}
