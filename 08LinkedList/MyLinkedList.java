@@ -75,6 +75,14 @@ public class MyLinkedList{
     getNode(index).setValue(newValue);
     return old;
   }
+  public int indexOf(int value){
+    for(int i = 0; i < size(); i++){
+      if(getNode(i).getValue() == value){
+        return i;
+      }
+    }
+    return -1;
+  }
   public static void main(String[] args){
     MyLinkedList l = new MyLinkedList();
     l.add(1);
@@ -82,5 +90,12 @@ public class MyLinkedList{
     l.add(3);
     System.out.println(l.set(1,4));
     System.out.println(l);
+    System.out.println(l.indexOf(1));
+    System.out.println(l.indexOf(2));
+    System.out.println(l.indexOf(3));
+    System.out.println(l.indexOf(4));
+
+
   }
+
 }
