@@ -38,6 +38,11 @@ public class MyLinkedList{
     }
     return n;
   }
+  public void clear(){
+    first = null;
+    last = null;
+    length = 0;
+  }
   public boolean add(int value){
     Node n = new Node(value);
     if(length == 0){
@@ -68,7 +73,12 @@ public class MyLinkedList{
     for(int i = 0;i < size();i++){
 	    s += getNode(i).getValue() + ",";
     }
-    return s.substring(0,s.length() - 1) + "]";
+    if(s.length() > 1){
+      return s.substring(0,s.length() - 1) + "]";
+    }
+    else{
+      return "[]";
+    }
   }
   public int set(int index, int newValue){
     int old = getNode(index).getValue();
@@ -100,6 +110,7 @@ public class MyLinkedList{
       length++;
     }
   }
+
   public static void main(String[] args){
     MyLinkedList l = new MyLinkedList();
     l.add(0);
@@ -111,7 +122,8 @@ public class MyLinkedList{
     System.out.println(l);
     l.add(1,9);
     System.out.println(l);
-
+    l.clear();
+    System.out.println(l);
   }
 
 }
