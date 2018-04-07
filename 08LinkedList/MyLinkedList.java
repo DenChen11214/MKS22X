@@ -110,7 +110,28 @@ public class MyLinkedList{
       length++;
     }
   }
-
+  public boolean remove(Integer value){
+    int index = indexOf(value);
+    remove(index);
+    return true;
+  }
+  public Integer remove(int index){
+    int removed = getNode(index).getValue();
+    if(index == 0){
+      first = first.getNext();
+      length--;
+    }
+    else if(index == size() - 1){
+      last = getNode(index - 1);
+      getNode(index - 2).setNext(last);
+      length--;
+    }
+    else{
+      getNode(index - 1).setNext(getNode(index + 1));
+      length--;
+    }
+    return removed;
+  }
   public static void main(String[] args){
     MyLinkedList l = new MyLinkedList();
     l.add(0);
@@ -122,7 +143,7 @@ public class MyLinkedList{
     System.out.println(l);
     l.add(1,9);
     System.out.println(l);
-    l.clear();
+    l.remove(new Integer(2));
     System.out.println(l);
   }
 
