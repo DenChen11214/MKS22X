@@ -1,19 +1,19 @@
 import java.util.*;
 public class MyStack{
-  private LinkedList<Integer> data;
+  private LinkedList<Double> data;
   public MyStack(){
-    data = new LinkedList<Integer>();
+    data = new LinkedList<Double>();
   }
-  public void push(int i){
+  public void push(double i){
     data.add(i);
   }
-  public int pop(){
-    int last = data.getLast();
+  public double pop(){
+    double last = data.getLast();
     data.removeLast();
     return last;
   }
   public String toString(){
-    String s = "[";
+    String s = "[ ";
     for(int i = 0; i< data.size();i++){
       s += data.get(i) + " ";
     }
