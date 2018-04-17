@@ -1,4 +1,4 @@
-public class Sort{
+public class Sorts{
   public static void radixsort(MyLinkedListImproved<Integer> data){
     @SuppressWarnings("unchecked") MyLinkedListImproved<Integer>[] data2 = new MyLinkedListImproved[10];
     for(int i = 0; i < data2.length; i++){
@@ -71,7 +71,7 @@ public class Sort{
     l.add(6);
     l.add(3);
     l.add(132);
-    Sort.radixsort(l);
+    Sorts.radixsort(l);
     System.out.println(l);
   }
 }
