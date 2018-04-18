@@ -1,4 +1,4 @@
-public class Eval{
+public class Calculator{
   public static double eval(String s){
     MyStack data = new MyStack();
     String operators = "+-*/%";
@@ -32,10 +32,10 @@ public class Eval{
     return data.pop();
   }
   public static void main(String[] args){
-    System.out.println(Eval.eval("10 2.0 +"));
-    System.out.println(Eval.eval("11 3 - 4 + 2.5 *"));
-    System.out.println(Eval.eval("8 2 + 99 9 - * 2 + 9 -"));
-    System.out.println(Eval.eval("10 2.0 /"));
-    System.out.println(Eval.eval("10 2.0 %"));
+    System.out.println(Calculator.eval("10 2.0 +"));
+    System.out.println(Calculator.eval("11 3 - 4 + 2.5 *"));
+    System.out.println(Calculator.eval("8 2 + 99 9 - * 2 + 9 -"));
+    System.out.println(Calculator.eval("10 2.0 /"));
+    System.out.println(Calculator.eval("10 2.0 %"));
   }
 }
