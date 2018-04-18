@@ -5,7 +5,7 @@ public class MyDeque{
     public MyDeque(){
 	data = new String[10];
 	start = 0;
-	end = 0;
+	end = 1;
     }
     public MyDeque(int initialCapacity){
 	if(initialCapacity < 0){
@@ -22,13 +22,24 @@ public class MyDeque{
 	if(value == null){
 	    throw new NullPointerException();
 	}
+	data[start] = value;
 	if(start - 1 == -1 && end != data.length - 1){
 	    start = data.length - 1;
-	    data[start] = value;
 	}
 	else{
-	    data[start - 1] = value;
 	    start--;
+	}   
+    }
+    public void addLast(String value){
+	if(value == null){
+	    throw new NullPointerException();
+	}
+	data[end] = value;
+	if(end + 1 % data.length == 0 && start != 0){
+	    end = 0;
+	}
+	else{
+	    end++;
 	}
     }
     public String toString(){
@@ -41,6 +52,12 @@ public class MyDeque{
     public static void main(String[] args){
 	MyDeque d= new MyDeque();
 	d.addFirst("123");
+	System.out.println(d);
+	d.addLast("ab");
+	System.out.println(d);
+	d.addLast("231");
+	System.out.println(d);
+	d.addFirst("hi");
 	System.out.println(d);
     }
 }
