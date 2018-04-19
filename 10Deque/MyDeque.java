@@ -1,45 +1,62 @@
-public class MyDeque{
+public class MyDeque<T>{
     private int start;
     private int end;
-    private String[] data;
+    private T[] data;
+    @SuppressWarnings("unchecked")
     public MyDeque(){
-	data = new String[10];
+	data = (T[])new Object[10];
 	start = 0;
-	end = 1;
+	end = 0;
     }
+    @SuppressWarnings("unchecked")
     public MyDeque(int initialCapacity){
 	if(initialCapacity < 0){
 	    throw new IllegalArgumentException();
 	}
-	data = new String[initialCapacity];
+        data = (T[])new Object[initialCapacity];
 	start = 0;
 	end = 0;
     }
     public int size(){
 	return data.length;
     }
-    public void addFirst(String value){
+    public void addFirst(T value){
+	if(start - 1 == end || (end == data.length - 1 && start == 0)){
+	    return;
+	}
 	if(value == null){
 	    throw new NullPointerException();
 	}
-	data[start] = value;
 	if(start - 1 == -1 && end != data.length - 1){
+	    data[data.length - 1] = value;
 	    start = data.length - 1;
+	    if(end == 0){
+		end = start;
+	    }
 	}
 	else{
-	    start--;
-	}   
+	    data[start - 1] = value;
+	    start --;
+	}
     }
-    public void addLast(String value){
+    public void addLast(T value){
+	if(end + 1 == start){
+	    return;
+	}
 	if(value == null){
 	    throw new NullPointerException();
 	}
-	data[end] = value;
-	if(end + 1 % data.length == 0 && start != 0){
+	if((end + 1) % size() == 0 && start != 0){
+	    data[0] = value;
 	    end = 0;
 	}
 	else{
+	    data[end + 1] = value;
 	    end++;
+	    
+	}
+	if(start == 0 && end == 1){
+	    start = end;
 	}
     }
     public String toString(){
@@ -50,14 +67,29 @@ public class MyDeque{
 	return s + "]";
     }
     public static void main(String[] args){
-	MyDeque d= new MyDeque();
-	d.addFirst("123");
+	MyDeque<String> d = new MyDeque<>();
+        d.addLast("hi");
 	System.out.println(d);
-	d.addLast("ab");
+	d.addLast("hi");
 	System.out.println(d);
-	d.addLast("231");
+	d.addLast("hi");
 	System.out.println(d);
-	d.addFirst("hi");
+	d.addLast("hi");
 	System.out.println(d);
+	d.addLast("hi");
+	System.out.println(d);
+	d.addLast("hi");
+	System.out.println(d);
+	d.addLast("hi");
+	System.out.println(d);
+	d.addLast("hi");
+	System.out.println(d);
+	d.addLast("hi");
+	System.out.println(d);
+	d.addLast("hi");
+	System.out.println(d);
+	d.addLast("hi");
+	System.out.println(d);
+	
     }
 }
