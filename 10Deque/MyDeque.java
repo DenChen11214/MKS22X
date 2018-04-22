@@ -109,7 +109,18 @@ public class MyDeque<T>{
     System.out.println(end);
     return value;
   }
-
+  public T getFirst(){
+    if(data[start] == null){
+      throw new NoSuchElementException();
+    }
+    return data[start];
+  }
+  public T getLast(){
+    if(data[end] == null){
+      throw new NoSuchElementException();
+    }
+    return data[end];
+  }
   public String toString(){
     String s = "[";
     for(int i = 0;i < data.length;i++){
@@ -163,5 +174,9 @@ public class MyDeque<T>{
     System.out.println(d);
     d.addFirst("asdasdas");
     System.out.println(d);
+    d.addFirst("opop");
+    System.out.println(d);
+    System.out.println(d.getFirst());
+    System.out.println(d.getLast());
   }
 }
