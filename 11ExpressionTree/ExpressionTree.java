@@ -3,13 +3,13 @@ public class ExpressionTree{
 
   
   /*return the expression as an infix notation string with parenthesis*/
-  /* The sample tree would be: "( 3 + (2 * 10))"     */
+  /* The sample tree would be: "(3 + (2 * 10))"     */
   public String toString(){
       if(isValue()){
 	  return getValue() + "";
       }
       else{
-	  return getLeft().toString() + " " + getOp() + " " + getRight().toString();
+	  return "(" + getLeft().toString() + " " + getOp() + " " + getRight().toString() + ")";
       }
   }
   
