@@ -23,6 +23,9 @@ public class MyHeap{//<String extends Comparable<String>>{
     return data[(i - 1)/2];
   }
   public boolean hasParent(int i){
+    if(i == 0){
+      return false;
+    }
     return ((i - 1) / 2.0) >= 0;
   }
   public String getChildL(int i){
@@ -55,6 +58,7 @@ public class MyHeap{//<String extends Comparable<String>>{
         pushup(index);
         index = (index - 1) / 2;
       }
+      index = (index - 1) / 2;
     }
   }
   private void swap(String[] ary,int i, int n){
@@ -67,7 +71,7 @@ public class MyHeap{//<String extends Comparable<String>>{
       return child.compareTo(parent) >= 1;
     }
     else{
-      return child.compareTo(parent) < 1;
+      return child.compareTo(parent) <= -1;
     }
   }
   private void resize(){
@@ -87,18 +91,14 @@ public class MyHeap{//<String extends Comparable<String>>{
     return s + data[size() - 1] + "]";
   }
   public static void main(String[] args){
-    MyHeap heap = new MyHeap();
-    heap.add("a");
-    System.out.println(heap);
-    heap.add("b");
-    System.out.println(heap);
-    heap.add("c");
+    MyHeap heap = new MyHeap(true);
+    heap.add("f");
     System.out.println(heap);
     heap.add("d");
     System.out.println(heap);
-    heap.add("e");
+    heap.add("c");
     System.out.println(heap);
-    heap.add("f");
+    heap.add("b");
     System.out.println(heap);
   }
 }
