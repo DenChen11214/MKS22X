@@ -19,34 +19,66 @@ public class MyHeap{//<String extends Comparable<String>>{
   public int size(){
     return length;
   }
-  public String getParent(int i){
+  private String getParent(int i){
     return data[(i - 1)/2];
   }
-  public boolean hasParent(int i){
+  private boolean hasParent(int i){
     if(i == 0){
       return false;
     }
     return ((i - 1) / 2.0) >= 0;
   }
-  public String getChildL(int i){
+  private String getChildL(int i){
     return data[i * 2 + 1];
   }
-  public String getChildR(int i){
+  private String getChildR(int i){
     return data[i * 2 + 2];
   }
-  public boolean hasChildL(int i){
+  private boolean hasChildL(int i){
     return (i * 2 + 1) < size();
   }
-  public boolean hasChildR(int i){
+  private boolean hasChildR(int i){
     return (i * 2 + 2) < size();
   }
   public String peek(){
     return data[0];
   }
-  public void pushup(int i){
+  private void pushup(int i){
     if(compares(isMax,data[i],getParent(i))){
       swap(data, i,(i - 1) / 2);
     }
+  }
+  private int pushdown(int i){
+    int index = 0;
+    if(hasChildL(i)){
+      if(hasChildR(i)){
+        if(compares(isMax,getChildL(i),getChildR(i))){
+          index = 2 * i + 1;
+        }
+        else{
+          index = 2 * 2 + 2;
+        }
+      }
+      else{
+        index = 2 * i + 1;
+      }
+    }
+    if(compares(isMax,data[index],data[i])){
+      swap(data, index, i);
+    }
+    return index;
+  }
+  public String remove(){
+    String s = data[0];
+    String e = data[size() - 1];
+    int index = 0;
+    data[0] = e;
+    data[size() - 1] = null;
+    length--;
+    while(hasChildL(index)){
+      index = pushdown(index);
+    }
+    return s;
   }
   public void add(String s){
     resize();
@@ -66,7 +98,7 @@ public class MyHeap{//<String extends Comparable<String>>{
     ary[i] = ary[n];
     ary[n] = temp;
   }
-  public boolean compares(boolean maxmin, String child, String parent){
+  private boolean compares(boolean maxmin, String child, String parent){
     if(maxmin){
       return child.compareTo(parent) >= 1;
     }
@@ -88,10 +120,13 @@ public class MyHeap{//<String extends Comparable<String>>{
     for(int i = 0;i < size() - 1; i++){
       s += data[i] + ",";
     }
-    return s + data[size() - 1] + "]";
+    if(size() > 0){
+      return s + data[size() - 1] + "]";
+    }
+    return "[]";
   }
   public static void main(String[] args){
-    MyHeap heap = new MyHeap(true);
+    MyHeap heap = new MyHeap(false);
     heap.add("f");
     System.out.println(heap);
     heap.add("d");
@@ -99,6 +134,14 @@ public class MyHeap{//<String extends Comparable<String>>{
     heap.add("c");
     System.out.println(heap);
     heap.add("b");
+    System.out.println(heap);
+    System.out.println(heap.remove());
+    System.out.println(heap);
+    System.out.println(heap.remove());
+    System.out.println(heap);
+    System.out.println(heap.remove());
+    System.out.println(heap);
+    System.out.println(heap.remove());
     System.out.println(heap);
   }
 }
