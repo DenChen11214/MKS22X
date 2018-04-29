@@ -1,25 +1,23 @@
-public class MyHeap{//<String extends Comparable<String>>{
+public class MyHeap<T extends Comparable<T>>{
   private int length;
   private boolean isMax;
-  private String[] data;
-  //@SuppressWarnings("unchecked")
+  private T[] data;
+  @SuppressWarnings("unchecked")
   public MyHeap(){
     isMax = true;
     length = 0;
-    data =  new String[10];
-    //data = (String[])new Object[10];
+    data = (T[])new Comparable[10];
   }
-  // @SuppressWarnings("unchecked")
+  @SuppressWarnings("unchecked")
   public MyHeap(boolean maxmin){
     isMax = maxmin;
     length = 0;
-    data = new String[10];
-    //data = (String[])new Object[10];
+    data = (T[])new Comparable[10];
   }
   public int size(){
     return length;
   }
-  private String getParent(int i){
+  private T getParent(int i){
     return data[(i - 1)/2];
   }
   private boolean hasParent(int i){
@@ -28,10 +26,10 @@ public class MyHeap{//<String extends Comparable<String>>{
     }
     return ((i - 1) / 2.0) >= 0;
   }
-  private String getChildL(int i){
+  private T getChildL(int i){
     return data[i * 2 + 1];
   }
-  private String getChildR(int i){
+  private T getChildR(int i){
     return data[i * 2 + 2];
   }
   private boolean hasChildL(int i){
@@ -40,7 +38,7 @@ public class MyHeap{//<String extends Comparable<String>>{
   private boolean hasChildR(int i){
     return (i * 2 + 2) < size();
   }
-  public String peek(){
+  public T peek(){
     return data[0];
   }
   private void pushup(int i){
@@ -68,9 +66,9 @@ public class MyHeap{//<String extends Comparable<String>>{
     }
     return index;
   }
-  public String remove(){
-    String s = data[0];
-    String e = data[size() - 1];
+  public T remove(){
+    T s = data[0];
+    T e = data[size() - 1];
     int index = 0;
     data[0] = e;
     data[size() - 1] = null;
@@ -80,7 +78,7 @@ public class MyHeap{//<String extends Comparable<String>>{
     }
     return s;
   }
-  public void add(String s){
+  public void add(T s){
     resize();
     int index = size();
     data[index] = s;
@@ -93,12 +91,12 @@ public class MyHeap{//<String extends Comparable<String>>{
       index = (index - 1) / 2;
     }
   }
-  private void swap(String[] ary,int i, int n){
-    String temp = ary[i];
+  private void swap(T[] ary,int i, int n){
+    T temp = ary[i];
     ary[i] = ary[n];
     ary[n] = temp;
   }
-  private boolean compares(boolean maxmin, String child, String parent){
+  private boolean compares(boolean maxmin, T child, T parent){
     if(maxmin){
       return child.compareTo(parent) >= 1;
     }
@@ -106,9 +104,10 @@ public class MyHeap{//<String extends Comparable<String>>{
       return child.compareTo(parent) <= -1;
     }
   }
+  @SuppressWarnings("unchecked")
   private void resize(){
     if(data.length - 1 == size()){
-      String[] newArray = new String[length * 2];
+      T[] newArray = (T[])new Comparable[size() * 2];
       for(int i = 0;i < size(); i++){
         newArray[i] = data[i];
       }
@@ -126,7 +125,7 @@ public class MyHeap{//<String extends Comparable<String>>{
     return "[]";
   }
   public static void main(String[] args){
-    MyHeap heap = new MyHeap(false);
+    MyHeap<String> heap = new MyHeap<>(false);
     heap.add("f");
     System.out.println(heap);
     heap.add("d");
