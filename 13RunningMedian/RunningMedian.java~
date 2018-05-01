@@ -1,0 +1,8 @@
+public class RunningMedian{
+    private int length;
+    public RunningMedian(){
+	
+    }
+    public int size(){
+	return length;
+    }
