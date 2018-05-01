@@ -41,12 +41,12 @@ public class MyHeap<T extends Comparable<T>>{
   public T peek(){
     return data[0];
   }
-  private void pushup(int i){
+  public void pushup(int i){
     if(compares(isMax,data[i],getParent(i))){
       swap(data, i,(i - 1) / 2);
     }
   }
-  private int pushdown(int i){
+  public int pushdown(int i){
     int index = 0;
     if(hasChildL(i)){
       if(hasChildR(i)){
@@ -54,7 +54,7 @@ public class MyHeap<T extends Comparable<T>>{
           index = 2 * i + 1;
         }
         else{
-          index = 2 * 2 + 2;
+          index = 2 * i + 2;
         }
       }
       else{
@@ -98,10 +98,10 @@ public class MyHeap<T extends Comparable<T>>{
   }
   private boolean compares(boolean maxmin, T child, T parent){
     if(maxmin){
-      return child.compareTo(parent) >= 1;
+      return child.compareTo(parent) > 0;
     }
     else{
-      return child.compareTo(parent) <= -1;
+      return child.compareTo(parent) <= 0;
     }
   }
   @SuppressWarnings("unchecked")
