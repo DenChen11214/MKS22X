@@ -1,0 +1,4 @@
+import java.util.*;
+public class FrontierQueue implements Frontier{
+    private Deque queue = new Deque();
+}
