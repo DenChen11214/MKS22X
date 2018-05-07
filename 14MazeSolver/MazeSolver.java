@@ -23,7 +23,41 @@ public class MazeSolver{
     //when there are no more values in the frontier return false
     if(mode == 0){
       frontier = new FrontierQueue();
-      
+      Location current = maze.getStart();
+      frontier.add(current);
+      Location[] neigh = maze.getNeighbors(current);
+      for(int i = 0; i < neigh.length;i++){
+        frontier.add(neigh[i]);
+        maze.set(neigh[i].getX(),neigh[i].getY(),'?');
+      }
+      maze.set(current.getX(),current.getY(), '.');
+      current = frontier.next();
+      if(neigh.length > 1){
+        current = frontier.next();
+      }
+      while(frontier.hasNext()){
+        if(animate){
+          clearTerminal();
+          System.out.println(this);
+          wait(20);
+        }
+        neigh = maze.getNeighbors(current);
+        for(int i = 0; i < neigh.length;i++){
+          frontier.add(neigh[i]);
+          maze.set(neigh[i].getX(),neigh[i].getY(),'?');
+        }
+        maze.set(current.getX(),current.getY(), '.');
+        current = frontier.next();
+        if(current.getX() == maze.getEnd().getX() && current.getY() == maze.getEnd().getY()){
+          while(current.getPrevious() != null){
+            maze.set(current.getX(),current.getY(), '@');
+            current = current.getPrevious();
+          }
+          maze.set(maze.getStart().getX(),maze.getStart().getY(),'@');
+          return true;
+          
+        }
+      }
     }
     if(mode == 1){
       frontier = new FrontierStack();
@@ -74,7 +108,7 @@ public class MazeSolver{
   }
   public static void main(String[] args){
     MazeSolver s = new MazeSolver("data1.txt");
-    s.solve(1);
+    s.solve(0);
     System.out.println(s);
   }
 }

@@ -6,7 +6,7 @@ public class FrontierQueue implements Frontier{
     return queue.removeFirst();
   }
   public void add(Location n){
-    queue.addFirst(n);
+    queue.addLast(n);
   }
   public boolean hasNext(){
     return queue.size() >=1;
