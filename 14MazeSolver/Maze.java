@@ -24,7 +24,9 @@ public class Maze{
     Location[] data = new Location[4];
     for(int i = 0 ; i < 4;i++){
 	    if((xCur + xDir[i] >= 0) && (xCur + xDir[i] < maze[0].length) &&
-	       (yCur + yDir[i] >= 0) && (yCur + yDir[i] < maze.length)){
+	       (yCur + yDir[i] >= 0) && (yCur + yDir[i] < maze.length) &&
+         (maze[xCur + xDir[i]][yCur + yDir[i]] == ' ') || (maze[xCur + xDir[i]][yCur + yDir[i]] == '?') ||
+         (maze[xCur + xDir[i]][yCur + yDir[i]] == 'E')){
         data[i] = new Location(xCur + xDir[i], yCur + yDir[i], L);
         numLoc ++;
 	    }

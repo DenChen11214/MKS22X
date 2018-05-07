@@ -1,13 +1,15 @@
 import java.util.*;
 public class FrontierStack implements Frontier{
-    private LinkedList<Location> queue = new LinkedList<>();
-    public Location next(){
-	return queue.get(queue.size() - 2);
-    }
-    public void add(Location n){
-	queue.addLast(n);
-    }
-    public boolean hasNext(){
-	return queue.size() > 1;
-    }
+  private LinkedList<Location> stack = new LinkedList<>();
+  public FrontierStack(){
+  }
+  public Location next(){
+    return stack.removeLast();
+  }
+  public void add(Location n){
+    stack.addLast(n);
+  }
+  public boolean hasNext(){
+    return stack.size() >= 1;
+  }
 }
