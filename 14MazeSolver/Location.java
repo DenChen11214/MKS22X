@@ -16,13 +16,5 @@ public class Location{
     public Location getPrevious(){
 	return previous;
     }
-    public void setX(int x){
-	this.x = x;
-    }
-    public void setY(int y){
-	this.y = y;
-    }
-    public void setPrevious(Location p){
-	previous = p;
-    }
+
 }
