@@ -28,6 +28,7 @@ public class Maze{
 	       (maze[xCur + xDir[i]][yCur + yDir[i]] == ' ') || (maze[xCur + xDir[i]][yCur + yDir[i]] == '?') ||
 	       (maze[xCur + xDir[i]][yCur + yDir[i]] == 'E')){
 		data[i] = new Location(xCur + xDir[i], yCur + yDir[i], L);
+		data[i].setDistance(calcDis(data[i],end));
 		numLoc ++;
 	    }
 	}
