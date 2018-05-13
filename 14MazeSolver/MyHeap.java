@@ -101,7 +101,7 @@ public class MyHeap<T extends Comparable<T>>{
       return child.compareTo(parent) > 0;
     }
     else{
-      return child.compareTo(parent) <= 0;
+      return child.compareTo(parent) < 0;
     }
   }
   @SuppressWarnings("unchecked")
@@ -125,22 +125,19 @@ public class MyHeap<T extends Comparable<T>>{
     return "[]";
   }
   public static void main(String[] args){
-    MyHeap<String> heap = new MyHeap<>(false);
-    heap.add("f");
+    MyHeap<Location> heap = new MyHeap<>(false);
+    Location a = new Location(0,2,null);
+    Location b = new Location(4,1,null);
+    Location c = new Location(2,9,null);
+    a.setDistance(10);
+    b.setDistance(5);
+    c.setDistance(7);
+    heap.add(a);
     System.out.println(heap);
-    heap.add("d");
+    heap.add(b);
     System.out.println(heap);
-    heap.add("c");
+    heap.add(c);
     System.out.println(heap);
-    heap.add("b");
-    System.out.println(heap);
-    System.out.println(heap.remove());
-    System.out.println(heap);
-    System.out.println(heap.remove());
-    System.out.println(heap);
-    System.out.println(heap.remove());
-    System.out.println(heap);
-    System.out.println(heap.remove());
-    System.out.println(heap);
+
   }
 }

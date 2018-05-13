@@ -1,158 +1,85 @@
 import java.util.*;
 public class MazeSolver{
-    private Maze maze;
-    private Frontier frontier;
-    public boolean animate;
+  private Maze maze;
+  private Frontier frontier;
+  public boolean animate;
 
-    public MazeSolver(String mazeText){
-	maze = new Maze(mazeText);
-    }
+  public MazeSolver(String mazeText){
+    maze = new Maze(mazeText);
+  }
 
-    //Default to BFS
-    public boolean solve(){ return solve(0); }
+  //Default to BFS
+  public boolean solve(){ return solve(0); }
 
-    //mode: required to allow for alternate solve modes.
-    //0: BFS
-    //1: DFS
-    public boolean solve(int mode){
-	//initialize your frontier
-	//while there is stuff in the frontier:
-	//  get the next location
-	//  process the location to find the locations (use the maze to do this)
-	//  check if any locations are the end, if you found the end just return true!
-	//  add all the locations to the frontier
-	//when there are no more values in the frontier return false
-	if(mode == 0){
-	    frontier = new FrontierQueue();
-	    Location current = maze.getStart();
-	    frontier.add(current);
-	    Location[] neigh = maze.getNeighbors(current);
-	    for(int i = 0; i < neigh.length;i++){
-		frontier.add(neigh[i]);
-		maze.set(neigh[i].getX(),neigh[i].getY(),'?');
-	    }
-	    maze.set(current.getX(),current.getY(), '.');
-	    current = frontier.next();
-	    if(neigh.length > 1){
-		current = frontier.next();
-	    }
-	    while(frontier.hasNext()){
-		if(animate){
-		    clearTerminal();
-		    System.out.println(this);
-		    wait(20);
-		}
-		neigh = maze.getNeighbors(current);
-		for(int i = 0; i < neigh.length;i++){
-		    frontier.add(neigh[i]);
-		    maze.set(neigh[i].getX(),neigh[i].getY(),'?');
-		}
-		maze.set(current.getX(),current.getY(), '.');
-		current = frontier.next();
-		if(current.getX() == maze.getEnd().getX() && current.getY() == maze.getEnd().getY()){
-		    while(current.getPrevious() != null){
-			maze.set(current.getX(),current.getY(), '@');
-			current = current.getPrevious();
-		    }
-		    maze.set(maze.getStart().getX(),maze.getStart().getY(),'@');
-		    return true;
-          
-		}
-	    }
-	}
-	if(mode == 2){
-	    frontier = new FrontierPQ();
-	    Location current = maze.getStart();
-	    frontier.add(current);
-	    Location[] neigh = maze.getNeighbors(current);
-	    for(int i = 0; i < neigh.length;i++){
-		frontier.add(neigh[i]);
-		maze.set(neigh[i].getX(),neigh[i].getY(),'?');
-	    }
-	    System.out.println("a");
-	    maze.set(current.getX(),current.getY(), '.');
-	    current = frontier.next();
-	    System.out.println("a");
-	    if(neigh.length > 1){
-		current = frontier.next();
-	    }
-	    System.out.println("a");
-	    while(frontier.hasNext()){
-		if(animate){
-		    clearTerminal();
-		    System.out.println(this);
-		    wait(20);
-		}
-		neigh = maze.getNeighbors(current);
-		for(int i = 0; i < neigh.length;i++){
-		    frontier.add(neigh[i]);
-		    maze.set(neigh[i].getX(),neigh[i].getY(),'?');
-		}
-		maze.set(current.getX(),current.getY(), '.');
-		current = frontier.next();
-		if(current.getX() == maze.getEnd().getX() && current.getY() == maze.getEnd().getY()){
-		    while(current.getPrevious() != null){
-			maze.set(current.getX(),current.getY(), '@');
-			current = current.getPrevious();
-		    }
-		    maze.set(maze.getStart().getX(),maze.getStart().getY(),'@');
-		    return true;
-          
-		}
-	    }
-	}
-	if(mode == 1){
-	    frontier = new FrontierStack();
-	    Location current = maze.getStart();
-	    frontier.add(current);
-	    while(frontier.hasNext()){
-		if(animate){
-		    clearTerminal();
-		    System.out.println(this);
-		    wait(20);
-		}
-		Location[] neigh = maze.getNeighbors(current);
-		for(int i = 0; i < neigh.length;i++){
-		    frontier.add(neigh[i]);
-		    maze.set(neigh[i].getX(),neigh[i].getY(),'?');
-		}
-		maze.set(current.getX(),current.getY(), '.');
-		current = frontier.next();
-		if(current.getX() == maze.getEnd().getX() && current.getY() == maze.getEnd().getY()){
-		    while(current.getPrevious() != null){
-			maze.set(current.getX(),current.getY(), '@');
-			current = current.getPrevious();
-		    }
-		    maze.set(maze.getStart().getX(),maze.getStart().getY(),'@');
-		    return true;
-          
-		}
-	    }
-	}
-	return false;
+  //mode: required to allow for alternate solve modes.
+  //0: BFS
+  //1: DFS
+  public boolean solve(int mode){
+    //initialize your frontier
+    //while there is stuff in the frontier:
+    //  get the next location
+    //  process the location to find the locations (use the maze to do this)
+    //  check if any locations are the end, if you found the end just return true!
+    //  add all the locations to the frontier
+    //when there are no more values in the frontier return false
+    if(mode == 0){
+	    frontier = new FrontierQueue();   
     }
-    public void clearTerminal(){
-	//erase terminal, go to top left of screen.
-	System.out.println("\033[2J\033[1;1H");
+    if(mode == 2){
+      frontier = new FrontierPQ();
     }
-    private void wait(int millis){
-	try {
-	    Thread.sleep(millis);
-	}
-	catch (InterruptedException e) {
-	}
+    if(mode == 1){
+      frontier = new FrontierStack();
     }
-    public void setAnimate(boolean b){
-	animate = b;
+    Location current = maze.getStart();
+    frontier.add(current);
+    while(frontier.hasNext()){
+      if(animate){
+        clearTerminal();
+        System.out.println(this);
+        wait(50);
+      }
+      current = frontier.next();
+      Location[] neigh = maze.getNeighbors(current);
+      for(int i = 0; i < neigh.length;i++){
+        frontier.add(neigh[i]);
+        maze.set(neigh[i].getX(),neigh[i].getY(),'?');
+      }
+      maze.set(current.getX(),current.getY(), '.');
+      if(current.getX() == maze.getEnd().getX() && current.getY() == maze.getEnd().getY()){
+        while(current.getPrevious() != null){
+          maze.set(current.getX(),current.getY(), '@');
+          current = current.getPrevious();
+        }
+        maze.set(maze.getStart().getX(),maze.getStart().getY(),'@');
+        return true;
+      }
+      System.out.println(frontier);
     }
-    public String toString(){
-	return maze.toString();
+    return false;
+  }
+  public void clearTerminal(){
+    //erase terminal, go to top left of screen.
+    System.out.println("\033[2J\033[1;1H");
+  }
+  private void wait(int millis){
+    try {
+      Thread.sleep(millis);
     }
-    public static void main(String[] args){
-	MazeSolver s = new MazeSolver("data1.txt");
-	s.animate = true;
-	s.solve(2);
-	System.out.println(s);
+    catch (InterruptedException e) {
     }
+  }
+  public void setAnimate(boolean b){
+    animate = b;
+  }
+  public String toString(){
+    return maze.toString();
+  }
+  public static void main(String[] args){
+    MazeSolver s = new MazeSolver("data2.txt");
+    s.animate = true;
+    s.solve(2);
+    System.out.println(s);
+  }
 }
 

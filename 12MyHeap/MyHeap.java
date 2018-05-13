@@ -101,7 +101,7 @@ public class MyHeap<T extends Comparable<T>>{
       return child.compareTo(parent) > 0;
     }
     else{
-      return child.compareTo(parent) <= 0;
+      return child.compareTo(parent) < 0;
     }
   }
   @SuppressWarnings("unchecked")

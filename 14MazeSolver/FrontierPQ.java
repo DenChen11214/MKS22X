@@ -11,4 +11,7 @@ public class FrontierPQ implements Frontier{
     public boolean hasNext(){
 	return heap.size() >= 1;
     }
+  public String toString(){
+    return heap.toString();
+  }
 }
