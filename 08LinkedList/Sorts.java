@@ -30,9 +30,7 @@ public class Sorts{
           data2[0].add(num);
         }
       }
-      for(int i = 0; i < data2.length;i++){
-        System.out.println(data2[i]);
-      }
+
       int index = 0;
       for(int i = 9; i >=0; i--){
         if(data2[i].size() > 0){
@@ -51,7 +49,6 @@ public class Sorts{
         data.add(0,n);
       }
     }
-    System.out.println(data);
   }
   public static void radixsortIncludingNegatives(MyLinkedListImproved<Integer> data){
     radixsort(data);

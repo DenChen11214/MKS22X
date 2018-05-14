@@ -1,9 +1,9 @@
 import java.util.*;
-public class RunningMedian{
+public class RunningMedians{
     private int length;
     private MyHeap<Double> min;
     private MyHeap<Double> max;
-    public RunningMedian(){
+    public RunningMedians(){
 	length = 0;
 	min = new MyHeap<Double>(false);
 	max = new MyHeap<Double>();
@@ -28,8 +28,6 @@ public class RunningMedian{
 	if(min.size() - max.size() == 2){
 	    max.add(min.remove());
 	}
-	System.out.println(min);
-	System.out.println(max);
     }
     public double getMedian(){
 	if(size() == 0){
@@ -49,7 +47,7 @@ public class RunningMedian{
 	return length;
     }
     public static void main(String[] args){
-	RunningMedian med = new RunningMedian();
+	RunningMedians med = new RunningMedians();
 	med.add(2.0);
 	System.out.println(med.getMedian());
 	med.add(1.0);

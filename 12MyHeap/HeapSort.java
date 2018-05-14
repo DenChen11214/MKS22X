@@ -4,7 +4,6 @@ public class HeapSort{
     for(int i = 0;i< data.length;i++){
       heap.add(data[i]);
     }
-    System.out.println(heap);
     for(int i = data.length - 1;i >= 0;i--){
       data[i] = heap.remove();
     }

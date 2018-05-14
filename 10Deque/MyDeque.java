@@ -43,8 +43,6 @@ public class MyDeque<T>{
     if(equal){
         end = start;
     }
-    System.out.println(start);
-    System.out.println(end);
   }
   public void addLast(T value){
     if(end + 1 == start){
@@ -68,8 +66,6 @@ public class MyDeque<T>{
     if(equal){
         start = end;
     }
-    System.out.println(start);
-    System.out.println(end);
   }
   public T removeFirst(){
     if(data[start] == null){
@@ -86,8 +82,6 @@ public class MyDeque<T>{
     else{
       start++;
     }
-    System.out.println(start);
-    System.out.println(end);
     return value;
   }
   public T removeLast(){
@@ -105,8 +99,6 @@ public class MyDeque<T>{
     else{
       end--;
     }
-    System.out.println(start);
-    System.out.println(end);
     return value;
   }
   public T getFirst(){
