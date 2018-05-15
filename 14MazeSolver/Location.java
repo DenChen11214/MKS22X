@@ -2,12 +2,14 @@ public class Location implements Comparable<Location>{
   private int x,y;
   private Location previous;
   private int distance;
+  private int traveled;
 
   public Location(int x, int y, Location prev){
     this.x = x;
     this.y = y;
     previous = prev;
     distance = 0;
+    traveled = 0;
   }
   public int getX(){
     return x;
@@ -24,6 +26,12 @@ public class Location implements Comparable<Location>{
   public void setDistance(int n){
     distance = n;
   }
+  public int getTraveled(){
+    return traveled;
+  }
+  public void setTraveled(int n){
+    traveled = n;
+  }
   public int compareTo(Location loc){
     if(this.distance > loc.getDistance()){
       return 1;
@@ -34,6 +42,6 @@ public class Location implements Comparable<Location>{
     return 0;
   }
   public String toString(){
-    return "" + x + " " + y + " " + distance;
+    return "" + x + " " + y + " " + distance + " " + traveled;
   }
 }
