@@ -171,7 +171,7 @@ public class Maze{
   }
   public void setIsA(boolean b){
     isA = b;
-  }
+  } 
   public static String colorize(String s){
     String ans = "";
     Scanner in = new Scanner(s);
