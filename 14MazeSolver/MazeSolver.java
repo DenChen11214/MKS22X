@@ -2,7 +2,7 @@ import java.util.*;
 public class MazeSolver{
     private Maze maze;
     private Frontier frontier;
-    public boolean animate;
+    public boolean animate = false;
 
     public MazeSolver(String mazeText){
 	maze = new Maze(mazeText);
@@ -40,10 +40,8 @@ public class MazeSolver{
 	while(frontier.hasNext()){
 	    if(animate){
 		clearTerminal();
-		System.out.println(this);
 		wait(50);
 	    }
-	    System.out.println(frontier);
 	    current = frontier.next();
 	    Location[] neigh = maze.getNeighbors(current);
 	    for(int i = 0; i < neigh.length;i++){
@@ -59,7 +57,6 @@ public class MazeSolver{
 		maze.set(maze.getStart().getX(),maze.getStart().getY(),'@');
 		return true;
 	    }
-	    System.out.println(frontier);
 	}
 	return false;
     }
@@ -82,9 +79,8 @@ public class MazeSolver{
     }
     public static void main(String[] args){
 	MazeSolver s = new MazeSolver("data2.txt");
-	s.animate = true;
+	s.animate = false;
 	s.solve(3);
-	System.out.println(s);
     }
 }
 
