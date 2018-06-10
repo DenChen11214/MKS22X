@@ -1,3 +1,4 @@
+
 public class MyHeap<T extends Comparable<T>>{
   private int length;
   private boolean isMax;
@@ -33,10 +34,10 @@ public class MyHeap<T extends Comparable<T>>{
     return data[i * 2 + 2];
   }
   private boolean hasChildL(int i){
-    return (i * 2 + 1) < size();
+    return (i * 2 + 1) < size() && data[i * 2 + 1] != null;
   }
   private boolean hasChildR(int i){
-    return (i * 2 + 2) < size();
+    return (i * 2 + 2) < size() && data[i*2 +2] != null;
   }
   public T peek(){
     return data[0];
@@ -49,12 +50,14 @@ public class MyHeap<T extends Comparable<T>>{
   private int pushdown(int i){
     int index = 0;
     if(hasChildL(i)){
+      System.out.println(getChildL(i));
       if(hasChildR(i)){
+        System.out.println(getChildR(i));
         if(compares(isMax,getChildL(i),getChildR(i))){
           index = 2 * i + 1;
         }
         else{
-          index = 2 * 2 + 2;
+          index = 2 * i + 2;
         }
       }
       else{

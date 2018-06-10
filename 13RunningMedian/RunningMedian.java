@@ -1,8 +1,8 @@
 import java.util.*;
 public class RunningMedian{
   private int length;
-  private MyHeap<Double> min;
-  private MyHeap<Double> max;
+   MyHeap<Double> min;
+   MyHeap<Double> max;
   public RunningMedian(){
     length = 0;
     min = new MyHeap<Double>(false);
@@ -50,21 +50,33 @@ public class RunningMedian{
     RunningMedian med = new RunningMedian();
     med.add(2.0);
     System.out.println(med.getMedian());
-    med.add(1.0);
+    System.out.println(med.max);
+    System.out.println(med.min);
+    med.add(2.0);
+    System.out.println(med.getMedian());
+    System.out.println(med.max);
+    System.out.println(med.min);
+    med.add(2.0);
+    System.out.println(med.getMedian());
+    System.out.println(med.max);
+    System.out.println(med.min);
+    med.add(5.0);
+    System.out.println(med.getMedian());
+    System.out.println(med.max);
+    System.out.println(med.min);
+    med.add(5.0);
+    System.out.println(med.getMedian());
+    System.out.println(med.max);
+    System.out.println(med.min);
+    med.add(21.0);
+    System.out.println(med.getMedian());
+    med.add(42.0);
+    System.out.println(med.getMedian());
+    med.add(42.0);
     System.out.println(med.getMedian());
     med.add(6.0);
     System.out.println(med.getMedian());
-    med.add(4.0);
-    System.out.println(med.getMedian());
-    med.add(2.0);
-    System.out.println(med.getMedian());
-    med.add(9.0);
-    System.out.println(med.getMedian());
-    med.add(109.0);
-    System.out.println(med.getMedian());
-    med.add(29.0);
-    System.out.println(med.getMedian());
-    med.add(0.0);
+    med.add(231.0);
     System.out.println(med.getMedian());
 	
   }
